@@ -1,0 +1,16 @@
+[
+{
+  "modid": "freneticfolly",
+  "name": "Frenetic Folly Forge Mod",
+  "description": "Various enhancements to Minecraft that are either in testing or haven't been put into an official mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["FreneticFeline"],
+  "credits": "The Forge and FML team.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

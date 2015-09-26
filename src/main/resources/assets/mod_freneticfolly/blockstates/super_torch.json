@@ -1,0 +1,15 @@
+{
+	"variants" : {
+		"normal" : { "model" : "mod_freneticfolly:super_torch" },
+
+		"facing=up": { "model": "mod_freneticfolly:super_torch" },
+
+		"facing=east": { "model": "mod_freneticfolly:super_torch_wall" },
+
+		"facing=south": { "model": "mod_freneticfolly:super_torch_wall", "y": 90 },
+
+		"facing=west": { "model": "mod_freneticfolly:super_torch_wall", "y": 180 },
+
+		"facing=north": { "model": "mod_freneticfolly:super_torch_wall", "y": 270 }
+	}
+}

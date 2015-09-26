@@ -1,0 +1,15 @@
+{
+	"variants" : {
+		"normal" : { "model" : "mod_freneticfolly:emerald_fountain" },
+
+		"facing=up": { "model": "mod_freneticfolly:emerald_fountain" },
+
+		"facing=east": { "model": "mod_freneticfolly:emerald_fountain" },
+
+		"facing=south": { "model": "mod_freneticfolly:emerald_fountain" },
+
+		"facing=west": { "model": "mod_freneticfolly:emerald_fountain" },
+
+		"facing=north": { "model": "mod_freneticfolly:emerald_fountain" }
+	}
+}

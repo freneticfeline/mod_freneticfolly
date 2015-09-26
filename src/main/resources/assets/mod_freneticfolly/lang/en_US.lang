@@ -1,0 +1,12 @@
+item.torchBow.name=Torch Bow
+item.torchArrow.name=Torch Arrow
+item.explosionBow.name=Explosion Bow
+item.explodingArrow.name=Exploding Arrow
+item.teleportBow.name=Teleport Bow
+item.teleportArrow.name=Teleport Arrow
+item.emeraldMultitool.name=Emerald Multitool
+item.sandwich.name=Sandwich
+item.binoculars.name=Binoculars
+tile.superTorch.name=Super Torch
+tile.emeraldFountain.name=Emerald Fountain
+item.enderShard.name=Ender Shard
