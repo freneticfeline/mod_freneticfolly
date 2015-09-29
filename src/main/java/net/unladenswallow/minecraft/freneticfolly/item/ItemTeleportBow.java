@@ -2,18 +2,16 @@ package net.unladenswallow.minecraft.freneticfolly.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.unladenswallow.minecraft.freneticfolly.ModFreneticFolly;
-import net.unladenswallow.minecraft.freneticfolly.entity.EntityExplodingArrow;
 import net.unladenswallow.minecraft.freneticfolly.entity.EntityTeleportArrow;
 
 public class ItemTeleportBow extends ItemCustomBow {
 
 	public ItemTeleportBow() {
-		super("teleportBow", "teleport_bow");
+		super("teleportBow", ModFreneticFolly.MODID + ":" + "teleport_bow");
 		this.setModelVariantCount(3);
 	}
 	

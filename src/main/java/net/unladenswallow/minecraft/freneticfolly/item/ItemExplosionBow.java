@@ -11,7 +11,7 @@ import net.unladenswallow.minecraft.freneticfolly.entity.EntityExplodingArrow;
 public class ItemExplosionBow extends ItemCustomBow {
 
 	public ItemExplosionBow() {
-		super("explosionBow", "explosion_bow");
+		super("explosionBow", ModFreneticFolly.MODID + ":" + "explosion_bow");
 		this.setModelVariantCount(3);
 	}
 	

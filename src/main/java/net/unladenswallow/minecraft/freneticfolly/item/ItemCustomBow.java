@@ -19,7 +19,7 @@ import net.unladenswallow.minecraft.freneticfolly.ModFreneticFolly;
 
 public abstract class ItemCustomBow extends ItemBow {
 
-	private String modelBaseName = "custom_bow";
+	private String modelBaseName = ModFreneticFolly.MODID + ":" + "custom_bow";
 	private int modelVariantCount = 3;
 
 	public ItemCustomBow(String unlocalizedName, String modelBaseName) {
@@ -41,7 +41,7 @@ public abstract class ItemCustomBow extends ItemBow {
 //        MEMLogger.info("ItemCustomBow onItemRightClick(): Do I have " + getItemUsedByBow().getUnlocalizedName() + "? " 
 //        		+ (playerIn.inventory.hasItem(getItemUsedByBow()) ? "yes" : "no"));
 
-        if (playerIn.capabilities.isCreativeMode || playerIn.inventory.hasItem(getItemUsedByBow()))
+        if (playerIn.capabilities.isCreativeMode || isUsableByPlayer(itemStackIn, playerIn))
         {
             playerIn.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
         }
@@ -49,7 +49,11 @@ public abstract class ItemCustomBow extends ItemBow {
         return itemStackIn;
     }
 
-    /**
+    protected boolean isUsableByPlayer(ItemStack itemStackIn, EntityPlayer playerIn) {
+		return playerIn.inventory.hasItem(getItemUsedByBow());
+	}
+
+	/**
      * Called when the player stops using an Item (stops holding the right mouse button).
      *  
      * @param timeLeft The amount of ticks left before the using would have been complete
@@ -64,7 +68,7 @@ public abstract class ItemCustomBow extends ItemBow {
 
         boolean flag = playerIn.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
 
-        if (flag || playerIn.inventory.hasItem(getItemUsedByBow()))
+        if (flag || isUsableByPlayer(stack, playerIn))
         {
         	float arrowDamage = getArrowDamage(itemUseDuration);
         	// I don't understand why this is done, but ItemBow does it, so we'll do it
@@ -83,7 +87,8 @@ public abstract class ItemCustomBow extends ItemBow {
 
             applyEnchantments(entityarrow, stack);
             
-            stack.damageItem(1, playerIn);
+            takeDamage(1, stack, playerIn);
+
             worldIn.playSoundAtEntity(playerIn, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowDamage * 0.5F);
 
             if (flag)
@@ -92,7 +97,7 @@ public abstract class ItemCustomBow extends ItemBow {
             }
             else
             {
-                playerIn.inventory.consumeInventoryItem(getItemUsedByBow());
+            	this.consumeAmmo(stack, worldIn, playerIn);
             }
 
             playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
@@ -103,6 +108,14 @@ public abstract class ItemCustomBow extends ItemBow {
             }
         }
     }
+
+	protected void consumeAmmo(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+        playerIn.inventory.consumeInventoryItem(getItemUsedByBow());
+	}
+
+	protected void takeDamage(int i, ItemStack stack, EntityPlayer playerIn) {
+        stack.damageItem(1, playerIn);
+	}
 
 	/**
  	 * Helper function for onPlayerStoppedUsing() that allows subclasses to easily overwrite
@@ -174,16 +187,17 @@ public abstract class ItemCustomBow extends ItemBow {
 		int useTime = getMaxItemUseDuration(stack) - useRemaining;
 //		MEMLogger.info("ItemCustomBow getModel(): useRemaining = " + useRemaining);
 //		MEMLogger.info("ItemCustomBow getModel(): useTime = " + useTime);
-        ModelResourceLocation modelresourcelocation = new ModelResourceLocation(ModFreneticFolly.MODID + ":" + modelBaseName, "inventory");
+        ModelResourceLocation modelresourcelocation = new ModelResourceLocation(modelBaseName, "inventory");
 
         if(stack.getItem() == this && player.getItemInUse() != null && useRemaining > 0)
         {
         	int modelVariation = getModelVariation(useTime);
         	if (modelVariation < 0 || modelVariation >= getModelVariantCount()) {
         		FFLogger.warning("ItemCustomBow getModel(): specified model variant " + modelVariation + " is out of range; using default"); 
-        		modelresourcelocation = new ModelResourceLocation(ModFreneticFolly.MODID + ":" + modelBaseName + "_pulling_0", "inventory");
+        		modelresourcelocation = new ModelResourceLocation(modelBaseName + "_pulling_0", "inventory");
         	} else {
-        		modelresourcelocation = new ModelResourceLocation(ModFreneticFolly.MODID + ":" + modelBaseName + "_pulling_" + modelVariation, "inventory");
+        		modelresourcelocation = new ModelResourceLocation(modelBaseName + "_pulling_" + modelVariation, "inventory");
+//        		FFLogger.info("ItemCustomBow getModel(): modelresourcelocation = " + modelresourcelocation);
         	}
         }
 //        FMLRelaunchLog.info("ItemCustomBow getModel(): modelResourcelocation is " + modelresourcelocation.getResourceDomain() + ":" + modelresourcelocation.getResourcePath());

@@ -11,7 +11,7 @@ import net.unladenswallow.minecraft.freneticfolly.entity.EntityTorchArrow;
 public class ItemTorchBow extends ItemCustomBow {
 
 	public ItemTorchBow() {
-		super("torchBow", "torch_bow");
+		super("torchBow", ModFreneticFolly.MODID + ":" + "torch_bow");
 		this.setModelVariantCount(3);
 	}
 	
