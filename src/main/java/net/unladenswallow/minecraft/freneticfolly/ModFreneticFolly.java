@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.unladenswallow.minecraft.freneticfolly.block.BlockEmeraldFountain;
 import net.unladenswallow.minecraft.freneticfolly.block.BlockSuperTorch;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemBinoculars;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemBowAndQuiver;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemEmeraldMultitool;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemExplosionBow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTeleportBow;
@@ -42,6 +43,7 @@ public class ModFreneticFolly {
 	public static Block superTorch;
 	public static Block emeraldFountain;
 	public static Item enderShard;
+	public static Item bowAndQuiver;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
@@ -59,6 +61,7 @@ public class ModFreneticFolly {
 		superTorch = new BlockSuperTorch();
 		emeraldFountain = new BlockEmeraldFountain();
 		(enderShard = new Item()).setUnlocalizedName("enderShard").setCreativeTab(CreativeTabs.tabMisc);
+		bowAndQuiver = new ItemBowAndQuiver();
 
 		GameRegistry.registerItem(torchBow, "torch_bow");
 		GameRegistry.registerItem(torchArrow, "torch_arrow");
@@ -72,6 +75,7 @@ public class ModFreneticFolly {
 		GameRegistry.registerBlock(superTorch, "super_torch");
 		GameRegistry.registerBlock(emeraldFountain, "emerald_fountain");
 		GameRegistry.registerItem(enderShard, "ender_shard");
+		GameRegistry.registerItem(bowAndQuiver, "bowandquiver");
 	}
 	
 	@EventHandler
@@ -158,7 +162,15 @@ public class ModFreneticFolly {
 				"I I",
 				'L', Items.leather,
 				'I', Items.iron_ingot);
-		
+
+		GameRegistry.addRecipe(new ItemStack(bowAndQuiver),
+				"LTS",
+				"TLS",
+				"LTS",
+				'L', Items.leather,
+				'T', Items.stick,
+				'S', Items.string);
+
 //		GameRegistry.addShapelessRecipe(new ItemStack(emeraldMultitool),
 //				new Object[] {ModEmeraldMaterial.emeraldPickaxe, ModEmeraldMaterial.emeraldAxe, ModEmeraldMaterial.emeraldSpade});
 		GameRegistry.addShapelessRecipe(new ItemStack(superTorch, 2),
@@ -173,6 +185,11 @@ public class ModFreneticFolly {
 				new Object[] {Items.ender_pearl});
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_pearl), 
 				new Object[] {enderShard, enderShard, enderShard, enderShard});
+
+		GameRegistry.addShapelessRecipe(new ItemStack(bowAndQuiver, 1, 62), 
+				new Object[] {Items.arrow, new ItemStack(bowAndQuiver, 1, 63)});
+		((ItemBowAndQuiver)bowAndQuiver).addRepairRecipes();
+
 	}
 	
 	private void addSmelting() {

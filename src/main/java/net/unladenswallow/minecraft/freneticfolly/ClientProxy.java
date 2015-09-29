@@ -66,7 +66,15 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.enderShard, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "ender_shard"), "inventory"));
 
-		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchBow);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.bowAndQuiver, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "bowandquiver"), "inventory"));
+        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver");
+        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow");
+        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_0");
+        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_1");
+        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_2");
+
+        MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.explosionBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.binoculars);
     }
