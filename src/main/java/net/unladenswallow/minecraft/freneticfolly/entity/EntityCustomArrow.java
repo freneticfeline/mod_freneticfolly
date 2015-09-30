@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.freneticfolly.entity;
 
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
@@ -26,7 +26,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.unladenswallow.minecraft.freneticfolly.FFLogger;
 
 /**
@@ -451,7 +450,7 @@ public abstract class EntityCustomArrow extends EntityArrow
 	@Override
     protected void doBlockCollisions()
     {
-    	FFLogger.info("EntityCustomArrow doBlockCollisions()");
+//    	FFLogger.info("EntityCustomArrow doBlockCollisions()");
         BlockPos blockpos = new BlockPos(this.getEntityBoundingBox().minX + 0.001D, this.getEntityBoundingBox().minY + 0.001D, this.getEntityBoundingBox().minZ + 0.001D);
         BlockPos blockpos1 = new BlockPos(this.getEntityBoundingBox().maxX - 0.001D, this.getEntityBoundingBox().maxY - 0.001D, this.getEntityBoundingBox().maxZ - 0.001D);
 
@@ -466,7 +465,7 @@ public abstract class EntityCustomArrow extends EntityArrow
                         BlockPos blockpos2 = new BlockPos(i, j, k);
                         IBlockState iblockstate = this.worldObj.getBlockState(blockpos2);
 
-                    	FFLogger.info("EntityCustomArrow doBlockCollisions(): collided with " + iblockstate.getBlock().getUnlocalizedName());
+//                    	FFLogger.info("EntityCustomArrow doBlockCollisions(): collided with " + iblockstate.getBlock().getUnlocalizedName());
 
                         try
                         {

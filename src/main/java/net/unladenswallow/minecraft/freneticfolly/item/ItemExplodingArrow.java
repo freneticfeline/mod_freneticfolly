@@ -1,13 +1,11 @@
 package net.unladenswallow.minecraft.freneticfolly.item;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-
-public class ItemExplodingArrow extends Item {
+public class ItemExplodingArrow extends ItemQuiverableArrow {
 
 	public ItemExplodingArrow() {
 		super();
 		setUnlocalizedName("explodingArrow");
-		setCreativeTab(CreativeTabs.tabCombat);
+		this.bowToMimic = new ItemExplosionBow();
+		this.itemUsedByBow = this;
 	}
 }

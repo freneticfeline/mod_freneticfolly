@@ -76,6 +76,8 @@ public class ClientProxy extends CommonProxy {
 
         MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.explosionBow);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.teleportBow);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.bowAndQuiver);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.binoculars);
     }
 

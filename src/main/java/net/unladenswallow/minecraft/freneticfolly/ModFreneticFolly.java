@@ -19,6 +19,8 @@ import net.unladenswallow.minecraft.freneticfolly.item.ItemBinoculars;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemBowAndQuiver;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemEmeraldMultitool;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemExplosionBow;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemQuiverableArrow;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemTeleportArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTeleportBow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTorchBow;
 
@@ -43,7 +45,9 @@ public class ModFreneticFolly {
 	public static Block superTorch;
 	public static Block emeraldFountain;
 	public static Item enderShard;
+	
 	public static Item bowAndQuiver;
+	public static ItemQuiverableArrow vanillaArrow;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
@@ -54,14 +58,16 @@ public class ModFreneticFolly {
 		explosionBow = new ItemExplosionBow();
 		(explodingArrow = new Item()).setUnlocalizedName("explodingArrow").setCreativeTab(CreativeTabs.tabCombat);
 		teleportBow = new ItemTeleportBow();
-		(teleportArrow = new Item()).setUnlocalizedName("teleportArrow").setCreativeTab(CreativeTabs.tabCombat);
+		teleportArrow = new ItemTeleportArrow();
 		emeraldMultitool = new ItemEmeraldMultitool();
 		(sandwich = new ItemFood(9, 1.0f, false)).setUnlocalizedName("sandwich");
 		binoculars = new ItemBinoculars();
 		superTorch = new BlockSuperTorch();
 		emeraldFountain = new BlockEmeraldFountain();
 		(enderShard = new Item()).setUnlocalizedName("enderShard").setCreativeTab(CreativeTabs.tabMisc);
+		
 		bowAndQuiver = new ItemBowAndQuiver();
+		vanillaArrow = new ItemQuiverableArrow();
 
 		GameRegistry.registerItem(torchBow, "torch_bow");
 		GameRegistry.registerItem(torchArrow, "torch_arrow");
@@ -75,7 +81,9 @@ public class ModFreneticFolly {
 		GameRegistry.registerBlock(superTorch, "super_torch");
 		GameRegistry.registerBlock(emeraldFountain, "emerald_fountain");
 		GameRegistry.registerItem(enderShard, "ender_shard");
+		
 		GameRegistry.registerItem(bowAndQuiver, "bowandquiver");
+		GameRegistry.registerItem(vanillaArrow, "vanillaArrow");
 	}
 	
 	@EventHandler
@@ -163,7 +171,7 @@ public class ModFreneticFolly {
 				'L', Items.leather,
 				'I', Items.iron_ingot);
 
-		GameRegistry.addRecipe(new ItemStack(bowAndQuiver),
+		GameRegistry.addRecipe(new ItemStack(bowAndQuiver, 1, bowAndQuiver.getMaxDamage()),
 				"LTS",
 				"TLS",
 				"LTS",
@@ -186,8 +194,6 @@ public class ModFreneticFolly {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_pearl), 
 				new Object[] {enderShard, enderShard, enderShard, enderShard});
 
-		GameRegistry.addShapelessRecipe(new ItemStack(bowAndQuiver, 1, 62), 
-				new Object[] {Items.arrow, new ItemStack(bowAndQuiver, 1, 63)});
 		((ItemBowAndQuiver)bowAndQuiver).addRepairRecipes();
 
 	}
