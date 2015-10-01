@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
 
 public class EntityExplodingArrow extends EntityCustomArrow {
 
@@ -25,15 +24,12 @@ public class EntityExplodingArrow extends EntityCustomArrow {
 
 	@Override
     protected void handleInTileState(Block block, EnumFacing facing) {
-//    	FMLRelaunchLog.info("EntityExplodingArrow handleInTileState(): Impact facing = " + facing);
-//    	FMLRelaunchLog.info("EntityExplodingArrow handleInTileState(): Let's explode block at [" + this.posX + "," + this.posY + "," + this.posZ + "] with radius " + this.explosionRadius);
     	this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, true);
     	this.setDead();
 	}
 	
 	@Override
 	protected void handleEntityHit(Entity entity) {
-//		FMLRelaunchLog.info("EntityTorchArrow handleEntityHit()");
     	this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius, true);
 		this.setDead();
 	}
