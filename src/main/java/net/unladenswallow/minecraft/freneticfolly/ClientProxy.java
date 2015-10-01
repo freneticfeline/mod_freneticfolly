@@ -50,6 +50,10 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.teleportArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "teleport_arrow"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.ironArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "iron_arrow"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.poisonArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "poison_arrow"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.emeraldMultitool, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "emerald_multitool"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.sandwich, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "sandwich"), "inventory"));
@@ -66,23 +70,39 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.enderShard, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "ender_shard"), "inventory"));
 
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-    		.register(ModFreneticFolly.bowAndQuiver, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "bowandquiver"), "inventory"));
-        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver");
-        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow");
-        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_0");
-        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_1");
-        ModelBakery.addVariantName(ModFreneticFolly.bowAndQuiver, "minecraft:bow_pulling_2");
-
+        registerItemModelWithVariants(ModFreneticFolly.emptyBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_empty", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.vanillaArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_vanillaarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.torchArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_torcharrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.explodingArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_explodingarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.teleportArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_teleportarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.ironArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_ironarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.poisonArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_poisonarrow", "minecraft:bow", 3);
+        
         MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.explosionBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.teleportBow);
-		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.bowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.emptyBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.vanillaArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.explodingArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.teleportArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.ironArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.poisonArrowBowAndQuiver);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.binoculars);
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent e) {
         super.postInit(e);
+    }
+    
+    private void registerItemModelWithVariants(Item bowAndQuiver, String itemModel, String modelBase, int numVariants) {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(bowAndQuiver, 0, new ModelResourceLocation(itemModel, "inventory"));
+        ModelBakery.addVariantName(bowAndQuiver, itemModel);
+        ModelBakery.addVariantName(bowAndQuiver, modelBase);
+        for (int i = 0; i < numVariants; i++) {
+	        ModelBakery.addVariantName(bowAndQuiver, modelBase + "_pulling_" + i);
+        }
     }
 }

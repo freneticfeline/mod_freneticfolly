@@ -16,7 +16,6 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.unladenswallow.minecraft.freneticfolly.FFLogger;
 import net.unladenswallow.minecraft.freneticfolly.ModFreneticFolly;
-import net.unladenswallow.minecraft.freneticfolly.item.ItemBowAndQuiver.EnumType;
 
 public abstract class ItemCustomBow extends ItemBow {
 
@@ -79,7 +78,7 @@ public abstract class ItemCustomBow extends ItemBow {
 
 //            MEMLogger.info("ItemCustomBow onPlayerStoppedUsing(): f = " + arrowDamage + "; j = " + itemUseDuration + "; timeLeft = " + timeLeft);
             
-            EntityArrow entityarrow = getNewEntityArrow(stack.getMetadata(), worldIn, playerIn, arrowDamage * 2.0f, itemUseDuration);
+            EntityArrow entityarrow = getNewEntityArrow(worldIn, playerIn, arrowDamage * 2.0f, itemUseDuration);
 
             entityarrow.setIsCritical(shotIsCritical(itemUseDuration, arrowDamage));
 //            if (entityarrow.getIsCritical()) {
@@ -180,9 +179,6 @@ public abstract class ItemCustomBow extends ItemBow {
 	 * @param damage
 	 * @return
 	 */
-	protected EntityArrow getNewEntityArrow(int stackMeta, World worldIn, EntityPlayer playerIn, float damage, int itemUseDuration) {
-		return getNewEntityArrow(worldIn, playerIn, damage, itemUseDuration);
-	}
 	protected EntityArrow getNewEntityArrow(World worldIn, EntityPlayer playerIn, float damage, int itemUseDuration) {
 		return new EntityArrow(worldIn, playerIn, damage);
 	}
@@ -231,7 +227,7 @@ public abstract class ItemCustomBow extends ItemBow {
 	public void fovUpdate(FOVUpdateEvent event) {
 		if (event.entity instanceof EntityPlayer) {
 			if (event.entity.isUsingItem() && event.entity.getItemInUse().getItem() == this) {
-				float fovModifier = getNewFovModifier(event.entity.getItemInUse().getMetadata(), event.entity.getItemInUseDuration());
+				float fovModifier = getNewFovModifier(event.entity.getItemInUseDuration());
 		        float fov = 1.0f;
 		        fov *= 1.0F - fovModifier * 0.15F;
 //				MEMLogger.info("ItemCustomBow fovUpdate(): itemUseDuration = " + event.entity.getItemInUseDuration() + "; fovModifier = " + fovModifier + "; newfov = " + fov);
@@ -245,12 +241,6 @@ public abstract class ItemCustomBow extends ItemBow {
 	 * sequences for bow pull
 	 * 
 	 */
-	protected float getNewFovModifier(int stackMeta, int itemInUseDuration) {
-//    	FFLogger.info("ItemCustomBow getNewFovModifier: stackMeta = " + stackMeta + "; itemInUseDuration = " + itemInUseDuration
-//    			+ "; newFovModifier = " + getNewFovModifier(itemInUseDuration));
-		return getNewFovModifier(itemInUseDuration);
-	}
-	
 	protected float getNewFovModifier(int itemInUseDuration) {
         float f = (float)itemInUseDuration / 20.0F;
 

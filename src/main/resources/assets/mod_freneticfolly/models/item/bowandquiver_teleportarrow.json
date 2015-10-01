@@ -1,0 +1,6 @@
+{
+    "parent":"mod_freneticfolly:item/tool_item",
+    "textures": {
+        "layer0":"mod_freneticfolly:items/bowandquiver.teleportarrows"
+    }
+}

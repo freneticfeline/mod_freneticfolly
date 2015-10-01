@@ -26,7 +26,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.unladenswallow.minecraft.freneticfolly.FFLogger;
 
 /**
  * This class extends EntityArrow, with modifications to pull
@@ -59,7 +58,7 @@ public abstract class EntityCustomArrow extends EntityArrow
          * Calling the constructor doesn't have the same problem.
          */
         super(worldIn, shooter, p_i1756_3_);
-        FFLogger.info("EntityCustomArrow [" + System.identityHashCode(this) + "] <init>: origin = " + (new BlockPos(shooter.posX, shooter.posY, shooter.posZ)).toString());
+//        FFLogger.info("EntityCustomArrow [" + System.identityHashCode(this) + "] <init>: origin = " + (new BlockPos(shooter.posX, shooter.posY, shooter.posZ)).toString());
     }
 
 

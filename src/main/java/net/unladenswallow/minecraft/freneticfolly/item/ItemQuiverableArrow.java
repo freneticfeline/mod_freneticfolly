@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.unladenswallow.minecraft.freneticfolly.FFLogger;
 
 /**
  * This class represents an arrow that can be placed into the Bow and Quiver.
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
  *  to define much of this behavior
  *  
  *  The base ItemQuiverableArrow class represents the special case of the vanilla arrow.
- *  Additional arrow types should extend ItemQuiverableArrow
+ *  Additional "quiverable" arrow types should extend ItemQuiverableArrow
  *  
  * @author FreneticFeline
  *
@@ -48,19 +49,39 @@ public class ItemQuiverableArrow extends Item {
 	}
 	
 	public EntityArrow getNewEntityArrow(World worldIn, EntityPlayer playerIn, float damage, int itemUseDuration) {
-		return this.getBowToMimick().getNewEntityArrow(worldIn, playerIn, damage, itemUseDuration);
+		if (this.getBowToMimick() == null) {
+			FFLogger.warning("ItemQuiverableArrow getnewEntityArrow: I have been called to get a new arrow entity, but I have no bow to mimic.  Subclass needs to override this method.");
+			return new EntityArrow(worldIn, playerIn, damage);
+		} else {
+			return this.getBowToMimick().getNewEntityArrow(worldIn, playerIn, damage, itemUseDuration);
+		}
 	}
 
 	public String getModelBaseName() {
-		return this.getBowToMimick().getModelBaseName();
+		if (this.getBowToMimick() == null) {
+			FFLogger.warning("ItemQuiverableArrow getModelBaseName: I have been called to get model base name, but I have no bow to mimic.  Subclass needs to override this method.");
+			return "unknown";
+		} else {
+			return this.getBowToMimick().getModelBaseName();
+		}
 	}
 	
 	public int getModelVariation(int useTime) {
-    	return this.getBowToMimick().getModelVariation(useTime);
+		if (this.getBowToMimick() == null) {
+			FFLogger.warning("ItemQuiverableArrow getModelVariation: I have been called to get model variation, but I have no bow to mimic.  Subclass needs to override this method.");
+			return 0;
+		} else {
+			return this.getBowToMimick().getModelVariation(useTime);
+		}
 	}
 
 	public float getNewFovModifier(int useTime) {
-        return this.getBowToMimick().getNewFovModifier(useTime);
+		if (this.getBowToMimick() == null) {
+			FFLogger.warning("ItemQuiverableArrow getNewFovModifier: I have been called to get FOV modifier, but I have no bow to mimic.  Subclass needs to override this method.");
+			return 1.0f;
+		} else {
+			return this.getBowToMimick().getNewFovModifier(useTime);
+		}
 	}
 
 	protected ItemCustomBow getBowToMimick() {
