@@ -7,7 +7,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -22,12 +21,14 @@ import net.unladenswallow.minecraft.freneticfolly.item.ItemEmeraldMultitool;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemExplodingArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemExplosionBow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemIronArrow;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemLavaArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemPoisonArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemQuiverableArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTeleportArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTeleportBow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTorchArrow;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemTorchBow;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemWaterArrow;
 
 
 @Mod(modid = ModFreneticFolly.MODID, useMetadata = true)
@@ -43,7 +44,7 @@ public class ModFreneticFolly {
 	public static Item binoculars;
 	public static Block superTorch;
 	public static Block emeraldFountain;
-	public static Item enderShard;
+	public static Item seedBomb; // TODO
 	
 	public static Item emptyBowAndQuiver;
 	public static ItemQuiverableArrow vanillaArrow;
@@ -57,6 +58,7 @@ public class ModFreneticFolly {
 	public static Item explosionBow;
 	public static Item explodingArrowBowAndQuiver;
 
+	public static Item enderShard;
 	public static ItemQuiverableArrow teleportArrow;
 	public static Item teleportBow;
 	public static Item teleportArrowBowAndQuiver;
@@ -114,6 +116,12 @@ public class ModFreneticFolly {
 		
 		poisonArrow = new ItemPoisonArrow();
 		poisonArrowBowAndQuiver = new ItemBowAndQuiver("poisonArrowBowAndQuiver", poisonArrow);
+		
+		waterArrow = new ItemWaterArrow();
+		waterArrowBowAndQuiver = new ItemBowAndQuiver("waterArrowBowAndQuiver", waterArrow);
+
+		lavaArrow = new ItemLavaArrow();
+		lavaArrowBowAndQuiver = new ItemBowAndQuiver("lavaArrowBowAndQuiver", lavaArrow);
 
 		GameRegistry.registerItem(emptyBowAndQuiver, "emptybowandquiver");
 
@@ -137,6 +145,12 @@ public class ModFreneticFolly {
 
 		GameRegistry.registerItem(poisonArrow, "poison_arrow");
 		GameRegistry.registerItem(poisonArrowBowAndQuiver, "poisonarrowbowandquiver");
+		
+		GameRegistry.registerItem(waterArrow, "water_arrow");
+		GameRegistry.registerItem(waterArrowBowAndQuiver, "waterarrowbowandquiver");
+		
+		GameRegistry.registerItem(lavaArrow, "lava_arrow");
+		GameRegistry.registerItem(lavaArrowBowAndQuiver, "lavaarrowbowandquiver");
 		
 	}
 	
@@ -248,7 +262,6 @@ public class ModFreneticFolly {
 				new Object[] {Blocks.torch, Items.arrow});
 		GameRegistry.addShapelessRecipe(new ItemStack(explodingArrow), 
 				new Object[] {Items.arrow, Items.gunpowder});
-		System.out.println(" **************  Potion.poison.getId() = " + Potion.poison.getId() + "  ************");
 		GameRegistry.addShapelessRecipe(new ItemStack(poisonArrow, 8),
 				new Object[] {Items.arrow, Items.arrow, Items.arrow, Items.arrow, Items.arrow, 
 						Items.arrow, Items.arrow, Items.arrow, new ItemStack(Items.potionitem, 1, 8196)});
@@ -258,6 +271,11 @@ public class ModFreneticFolly {
 				new Object[] {Items.ender_pearl});
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_pearl), 
 				new Object[] {enderShard, enderShard, enderShard, enderShard});
+		GameRegistry.addShapelessRecipe(new ItemStack(waterArrow, 8), 
+				new Object[] {Items.arrow, Items.arrow, Items.arrow, Items.arrow, Items.arrow, 
+						Items.arrow, Items.arrow, Items.arrow, Items.water_bucket});
+		// Only allow 1 lava arrow from lava bucket.  Otherwise it would turn lava into a renewable resource
+		GameRegistry.addShapelessRecipe(new ItemStack(lavaArrow), new Object[] {Items.arrow, Items.lava_bucket});
 
 		((ItemBowAndQuiver)vanillaArrowBowAndQuiver).addRepairRecipes();
 		((ItemBowAndQuiver)torchArrowBowAndQuiver).addRepairRecipes();
@@ -265,6 +283,8 @@ public class ModFreneticFolly {
 		((ItemBowAndQuiver)teleportArrowBowAndQuiver).addRepairRecipes();
 		((ItemBowAndQuiver)ironArrowBowAndQuiver).addRepairRecipes();
 		((ItemBowAndQuiver)poisonArrowBowAndQuiver).addRepairRecipes();
+		((ItemBowAndQuiver)waterArrowBowAndQuiver).addRepairRecipes();
+		((ItemBowAndQuiver)lavaArrowBowAndQuiver).addRepairRecipes();
 
 	}
 	

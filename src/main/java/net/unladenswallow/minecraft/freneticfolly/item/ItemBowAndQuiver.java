@@ -68,6 +68,7 @@ public class ItemBowAndQuiver extends ItemCustomBow {
 		
 	}
 
+	@SuppressWarnings("unused")
 	private void logCurrentStackState(ItemStack stack) {
 		FFLogger.info("The current state of this " + stack.getDisplayName() + " is...\n"
 				+ "damage = " + stack.getItemDamage() + "; "

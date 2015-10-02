@@ -54,6 +54,10 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.poisonArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "poison_arrow"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.waterArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "water_arrow"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.lavaArrow, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "lava_arrow"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.emeraldMultitool, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "emerald_multitool"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModFreneticFolly.sandwich, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "sandwich"), "inventory"));
@@ -77,6 +81,8 @@ public class ClientProxy extends CommonProxy {
         registerItemModelWithVariants(ModFreneticFolly.teleportArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_teleportarrow", "minecraft:bow", 3);
         registerItemModelWithVariants(ModFreneticFolly.ironArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_ironarrow", "minecraft:bow", 3);
         registerItemModelWithVariants(ModFreneticFolly.poisonArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_poisonarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.waterArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_waterarrow", "minecraft:bow", 3);
+        registerItemModelWithVariants(ModFreneticFolly.lavaArrowBowAndQuiver, ModFreneticFolly.MODID + ":bowandquiver_lavaarrow", "minecraft:bow", 3);
         
         MinecraftForge.EVENT_BUS.register(ModFreneticFolly.torchBow);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.explosionBow);
@@ -88,6 +94,9 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.teleportArrowBowAndQuiver);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.ironArrowBowAndQuiver);
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.poisonArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.waterArrowBowAndQuiver);
+		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.lavaArrowBowAndQuiver);
+
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.binoculars);
     }
 

@@ -26,6 +26,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.unladenswallow.minecraft.freneticfolly.FFLogger;
 
 /**
  * This class extends EntityArrow, with modifications to pull
@@ -199,7 +200,7 @@ public abstract class EntityCustomArrow extends EntityArrow
 //            	MEMLogger.info("EntityCustomArrow onUpdate(): movingobjectposition is not null");
                 if (movingobjectposition.entityHit != null)
                 {
-//                	MEMLogger.info("EntityCustomArrow onUpdate(): I hit " + movingobjectposition.entityHit.getName());
+                	FFLogger.info("EntityCustomArrow onUpdate(): I hit " + movingobjectposition.entityHit.getName());
 
                 	/*
                 	 * Pulled out for subclass override
