@@ -1,0 +1,6 @@
+{
+    "parent":"mod_freneticfolly:item/standard_item",
+    "textures": {
+        "layer0":"mod_freneticfolly:items/seed_starter"
+    }
+}

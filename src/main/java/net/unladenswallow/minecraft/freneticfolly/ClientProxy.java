@@ -29,6 +29,14 @@ public class ClientProxy extends CommonProxy {
         	.register(Item.getItemFromBlock(ModFreneticFolly.superTorch), 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "super_torch"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(Item.getItemFromBlock(ModFreneticFolly.emeraldFountain), 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "emerald_fountain"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.seedStarter, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "seed_starter"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.wheatSeedling, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "wheat_seedling"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.pumpkinSeedling, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "pumpkin_seedling"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModFreneticFolly.melonSeedling, 0, new ModelResourceLocation(new ResourceLocation(ModFreneticFolly.MODID, "melon_seedling"), "inventory"));
 
 		MinecraftForge.EVENT_BUS.register(ModFreneticFolly.binoculars);
     }

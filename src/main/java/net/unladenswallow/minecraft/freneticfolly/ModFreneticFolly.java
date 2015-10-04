@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.freneticfolly;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.unladenswallow.minecraft.freneticfolly.block.BlockEmeraldFountain;
 import net.unladenswallow.minecraft.freneticfolly.block.BlockSuperTorch;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemBinoculars;
 import net.unladenswallow.minecraft.freneticfolly.item.ItemEmeraldMultitool;
+import net.unladenswallow.minecraft.freneticfolly.item.ItemSeedling;
 
 
 @Mod(modid = ModFreneticFolly.MODID, useMetadata = true)
@@ -32,6 +34,10 @@ public class ModFreneticFolly {
 	public static Block superTorch;
 	public static Block emeraldFountain;
 	public static Item seedBomb; // TODO
+	public static Item seedStarter;
+	public static Item wheatSeedling;
+	public static Item pumpkinSeedling;
+	public static Item melonSeedling;
 	
 	
 	@EventHandler
@@ -43,12 +49,20 @@ public class ModFreneticFolly {
 		binoculars = new ItemBinoculars();
 		superTorch = new BlockSuperTorch();
 		emeraldFountain = new BlockEmeraldFountain();
+		(seedStarter = new Item()).setUnlocalizedName("seedStarter").setCreativeTab(CreativeTabs.tabMaterials);
+		wheatSeedling = new ItemSeedling("wheatSeedling", Blocks.wheat);
+		pumpkinSeedling = new ItemSeedling("pumpkinSeedling", Blocks.pumpkin_stem);
+		melonSeedling = new ItemSeedling("melonSeedling", Blocks.melon_stem);
 		
 		GameRegistry.registerItem(emeraldMultitool, "emerald_multitool");
 		GameRegistry.registerItem(sandwich, "sandwich");
 		GameRegistry.registerItem(binoculars, "binoculars");
 		GameRegistry.registerBlock(superTorch, "super_torch");
 		GameRegistry.registerBlock(emeraldFountain, "emerald_fountain");
+		GameRegistry.registerItem(seedStarter, "seed_starter");
+		GameRegistry.registerItem(wheatSeedling, "wheat_seedling");
+		GameRegistry.registerItem(pumpkinSeedling, "pumpkin_seedling");
+		GameRegistry.registerItem(melonSeedling, "melon_seedling");
 
 	}
 	
@@ -115,6 +129,26 @@ public class ModFreneticFolly {
 				"I I",
 				'L', Items.leather,
 				'I', Items.iron_ingot);
+		GameRegistry.addRecipe(new ItemStack(seedStarter),
+				"   ",
+				"D D",
+				" D ",
+				'D', Blocks.dirt);
+		GameRegistry.addRecipe(new ItemStack(wheatSeedling),
+				"W",
+				"S",
+				'W', Items.wheat_seeds,
+				'S', seedStarter);
+		GameRegistry.addRecipe(new ItemStack(pumpkinSeedling),
+				"P",
+				"S",
+				'P', Items.pumpkin_seeds,
+				'S', seedStarter);
+		GameRegistry.addRecipe(new ItemStack(melonSeedling),
+				"M",
+				"S",
+				'M', Items.melon_seeds,
+				'S', seedStarter);
 
 //		GameRegistry.addShapelessRecipe(new ItemStack(emeraldMultitool),
 //				new Object[] {ModEmeraldMaterial.emeraldPickaxe, ModEmeraldMaterial.emeraldAxe, ModEmeraldMaterial.emeraldSpade});
